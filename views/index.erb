@@ -1,0 +1,20 @@
+<form action="/" method="post">
+  <label>Enter movie name</label>
+  <input name="name"><br/>
+  <label>Enter your own rating</label>
+  
+  <input name="own_rating"><br/>
+  <label>Enter your comment</label>
+  
+  <textarea name="own_comments"></textarea><br/>
+  <input type="submit" value="Click">
+</form>
+
+<table>
+  <% for tvshow in @tv_shows %>
+    <tr>
+      <td valign="top"><a href="/our-rating/<%= tvshow.id %>"><%= tvshow.name %></a></td>
+    </tr>
+  <% end %>
+</table>
+

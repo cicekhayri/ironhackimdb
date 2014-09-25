@@ -1,8 +1,10 @@
 require 'rubygems'
 require 'active_record'
-require 'sinatra'
-require "sinatra/reloader"
 require 'imdb'
+require 'sinatra'
+require 'sinatra/reloader'
+
+
 
 ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',
@@ -18,7 +20,7 @@ class TVShow < ActiveRecord::Base
   end
 
   # we have name, own_rating and own_comments available
-  validates :name, presence: true, length: { in: 1..10 }
+  validates :name, presence: true,uniqueness: true, length: { in: 1..10 }
   validates :own_comments, length: { in: 100..1000 }
   validates :own_rating, presence: true, numericality: true 
  
@@ -33,6 +35,31 @@ class TVShow < ActiveRecord::Base
   def imdb_get_movie_poster
     @the_serie = new_imdb_object(name).poster
   end
+end
+
+
+get '/' do
+  @tv_shows = TVShow.all 
+  puts "="
+  puts @tv_shows
+  puts "="
+  erb :index
+end
+
+post '/' do
+  the_show = TVShow.new
+  the_show.name = params[:name]
+  the_show.own_rating = params[:own_rating]
+  the_show.own_comments = params[:own_comments]
+
+  the_show.save
+  redirect '/'
+end
+
+get '/our-rating/:id' do
+  @tv_show = TVShow.find(params[:id])
+
+  erb :our_rating
 end
 
 
