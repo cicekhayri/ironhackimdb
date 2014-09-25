@@ -35,6 +35,10 @@ class TVShow < ActiveRecord::Base
   def imdb_get_movie_poster
     @the_serie = new_imdb_object(name).poster
   end
+
+  def get_imdb_id
+    @the_serie = new_imdb_object(name).id
+  end
 end
 
 

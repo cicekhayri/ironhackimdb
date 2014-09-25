@@ -1,7 +1,16 @@
-<h1>This is our rating for the movie</h1>
+<table>
+  <tr>
+    <td><img src="<%= @tv_show.imdb_get_movie_poster %>" width="200" height="200"></td>
+    <td valign="top">
+      <p>
+      <strong>My Rating: </strong> <%= @tv_show.own_rating %><br/><br/>
+      <strong>IMDB Rating: </strong> <%= @tv_show.imdb_rating %>
+      <br/><br/>
+      <a href="http://www.imdb.com/title/tt<%= @tv_show.get_imdb_id %>">Go to IMDB for more information</a>
+      </p>
+    </td>
 
-<img src="<%= @tv_show.imdb_get_movie_poster %>" width="200" height="200">
+  </tr>
+</table>
 
-
-<%= @tv_show.own_rating %>
 
