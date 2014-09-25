@@ -3,7 +3,7 @@
 <table>
     <% for tvshow in @tv_shows %>
     <tr>
-      <td valign="top"><a href="/our-rating/<%= tvshow.id %>"><%= tvshow.name %></a></td>
+      <td valign="top"><a href="/our-rating/<%= tvshow.id %>"><%= tvshow.name %></a> | <a href="/delete/<%= tvshow.id %>">Delete</a></td>
     </tr>
     <% end %>
 </table>

@@ -63,7 +63,7 @@ end
 post '/' do
   the_show = TVShow.new
   the_show.name = params[:name]
-  the_show.own_rating = params[:own_rating]
+  the_show.own_rating = params[:own_rating].to_f
   the_show.own_comments = params[:own_comments]
   
   if the_show.save
@@ -81,6 +81,11 @@ get '/our-rating/:id' do
   erb :our_rating
 end
 
+get '/delete/:id' do
+  @tv_show = TVShow.find(params[:id])
+  @tv_show.delete
 
+  redirect '/'
+end
 
 
