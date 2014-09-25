@@ -43,7 +43,7 @@ end
 
 
 get '/' do
-  @tv_shows = TVShow.all 
+  @tv_shows = TVShow.order('id DESC')
   puts "="
   puts @tv_shows
   puts "="
